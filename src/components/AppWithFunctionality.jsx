@@ -31,28 +31,28 @@ function App() {
   const [isLoadingElements, setIsLoadingElements] = useState(true);
   const [idCardDelete, setIdCardDelete] = useState("");
 
-  const dataStates = useCallback(() => {
+  const setPopupStates = useCallback(() => {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsImagePopup(false);
     setIsDeletePopupOpen(false);
   }, []);
-
+  
   const сlosePopupOnEsc = useCallback(
     (evt) => {
       if (evt.key === "Escape") {
-        dataStates();
+        setPopupStates();
         document.removeEventListener("keydown", сlosePopupOnEsc);
       }
     },
-    [dataStates]
+    [setPopupStates]
   );
 
   const сlosePopup = useCallback(() => {
-    dataStates();
+    setPopupStates();
     document.removeEventListener("keydown", сlosePopupOnEsc);
-  }, [dataStates, сlosePopupOnEsc]);
+  }, [setPopupStates, сlosePopupOnEsc]);
 
   function setEventListtener() {
     document.addEventListener("keydown", сlosePopupOnEsc);

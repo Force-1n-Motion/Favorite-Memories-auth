@@ -10,7 +10,7 @@ export default function EditProfilePopup({ open, onClose, onUpdateUser, isSendin
   useEffect(() => {
     setInitialisValue("name", currentUser.name)
     setInitialisValue("occupation", currentUser.about)
-},[currentUser, setInitialisValue])
+},[currentUser, setInitialisValue, open])
 
   function resetOnClose() {
     onClose()

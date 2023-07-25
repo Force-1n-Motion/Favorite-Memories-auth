@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Header from "../Header/Header.jsx";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import InfoTooltip from "../InfoTooltip/InfoTooltip.jsx";
+import { signup } from "../../utils/auth"; // Импортируем функцию signup из auth.js
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -21,11 +21,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("https://auth.nomoreparties.co/signup", {
-        email: email,
-        password: password,
-      })
+    signup(email, password) // Вызываем функцию signup для отправки запроса на регистрацию
       .then((response) => {
         console.log(response.data);
         setIsSuccess(true);
@@ -37,7 +33,7 @@ const Register = () => {
         setIsError(true);
       });
   };
-  
+
 
   return (
     <div>

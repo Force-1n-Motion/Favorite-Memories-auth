@@ -6,7 +6,6 @@ export default function Card({ card, onCardClick, onDelete }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
-    <div className="elements">
       <article className="element">
         {currentUser._id === card.owner._id && (
           <button
@@ -30,6 +29,5 @@ export default function Card({ card, onCardClick, onDelete }) {
           />
         </div>
       </article>
-    </div>
   );
 }

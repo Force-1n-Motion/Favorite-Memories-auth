@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import Header from "../Header/Header";
 import InfoTooltip from "../InfoTooltip/InfoTooltip.jsx";
+import { signin } from "../../utils/auth"; // Import the signin function from auth.js
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -21,30 +21,24 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("https://auth.nomoreparties.co/signin", {
-        email: email,
-        password: password,
-      })
+    signin(email, password)
       .then((response) => {
         console.log(response.data);
-        // Сохраняем JWT токен в localStorage
-   localStorage.setItem("token", response.data.token);
-   localStorage.setItem("email", email)
+        // Save JWT token and email in localStorage
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("email", email);
         history("/");
-       
-        // Очищаем поля ввода
+
+        // Clear input fields
         setEmail("");
         setPassword("");
       })
       .catch((error) => {
         console.error("Ошибка авторизации:", error);
-        // Обработка ошибок авторизации, например, показ сообщения об ошибке
+        // Handle authentication errors, for example, display an error message
         setIsAuthError(true);
       });
   };
-
-
   return (
     <div>
       <Header>

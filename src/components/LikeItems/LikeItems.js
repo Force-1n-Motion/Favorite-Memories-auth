@@ -9,7 +9,7 @@ export default function LikeItems({ likes, idDeveloper, idCard }) {
     setIsLike(likes.some((item) => idDeveloper === item._id))
   }, [likes, idDeveloper])
 
-  function ButtonLike() {
+  function buttonLike() {
     if (isLike) {
       api.deleteLike(idCard)
         .then((res) => {
@@ -32,7 +32,7 @@ export default function LikeItems({ likes, idDeveloper, idCard }) {
       <button
         type="button"
         className={`element__button-like ${isLike ? "element__button-like_active" : ""}`}
-        onClick={ButtonLike}
+        onClick={buttonLike}
       />
       <span className="elements__counter">{count}</span>
     </>

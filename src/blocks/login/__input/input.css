@@ -9,7 +9,7 @@
     margin-top: 30px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 700px) {
     .input{
         width: 260px;
     }
